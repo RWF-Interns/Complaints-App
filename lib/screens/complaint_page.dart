@@ -1,4 +1,4 @@
-import 'package:LoginApp/my_widgets/complaint_list.dart';
+import 'package:LoginApp/custom_widgets/complaint_list.dart';
 import 'package:flutter/material.dart';
 
 class ComplaintPage extends StatefulWidget {
