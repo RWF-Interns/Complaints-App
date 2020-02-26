@@ -23,10 +23,10 @@ class MyComplaint extends StatelessWidget {
         
         margin: EdgeInsets.all(10.0),
         padding: EdgeInsets.all(
-            20.0), //babyyy ..how is it scrolling? ... ListView tahts's why...ohhh achha
+            20.0), 
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFFF4F8BB),
+          color: Color(0xFFBCBDBF),
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(
             color: Colors.black,
@@ -103,7 +103,7 @@ void submitMessage(BuildContext context) {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Color(0xFFF4F8BB),
+          backgroundColor: Colors.white,
           title: Text("Respond to registered complaint "),
           contentPadding: EdgeInsets.all(30.0),
           contentTextStyle: kComplaintHeadingStyle,
@@ -113,7 +113,7 @@ void submitMessage(BuildContext context) {
               scrollPadding: EdgeInsets.all(20.0),
               decoration: InputDecoration(
                   labelText: "Enter Remarks(if any)",
-                  fillColor: Colors.brown,
+                  fillColor: Colors.grey,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(65.0),
                       borderSide: BorderSide())),
@@ -130,7 +130,7 @@ void submitMessage(BuildContext context) {
              
                 height: 50.0,
                 minWidth: 300.0,
-                color: Colors.brown,
+                color: Color(0xFF655F63),
                 textColor: Colors.white,
                 child: Text("Submit Remark"),
                 onPressed: () => {
@@ -145,7 +145,7 @@ void submitMessage(BuildContext context) {
               
                   height: 50.0,
                   minWidth: 300.0,
-                  color: Colors.brown,
+                  color: Color(0xFF655F63),
                   textColor: Colors.white,
                   child: Text("Attend Complaint"),
                   onPressed: () => {},
@@ -158,7 +158,7 @@ void submitMessage(BuildContext context) {
                 
                   height: 50.0,
                   minWidth: 300.0,
-                  color: Colors.brown,
+                  color: Color(0xFF655F63),
                   textColor: Colors.white,
                   child: Text("Close Complaint"),
                   onPressed: () => {},

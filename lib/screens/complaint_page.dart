@@ -12,11 +12,10 @@ class _ComplaintPageState extends State<ComplaintPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.brown,
+          backgroundColor: Color(0xFF655F63),
         ),
         body: Scrollbar(
           child: ListView(
-            
             children: <Widget>[
               MyComplaint(
                 nameAdd: "Subhan",
@@ -45,26 +44,28 @@ class _ComplaintPageState extends State<ComplaintPage> {
                 dateOfComp: "21/02/2020",
                 dept: "Civil",
                 remark: "Replace",
-                
               ),
               MyComplaint(
                 nameAdd: "Prasad Rao",
                 comp: "Window",
                 dateOfComp: "21/02/2020",
                 dept: "Civil",
-                remark: "Replace",),
-                MyComplaint(
+                remark: "Replace",
+              ),
+              MyComplaint(
                 nameAdd: "Prasad Rao",
                 comp: "Window",
                 dateOfComp: "21/02/2020",
                 dept: "Civil",
-                remark: "Replace",),
-                MyComplaint(
+                remark: "Replace",
+              ),
+              MyComplaint(
                 nameAdd: "Prasad Rao",
                 comp: "Window",
                 dateOfComp: "21/02/2020",
                 dept: "Civil",
-                remark: "Replace",)
+                remark: "Replace",
+              ),
             ],
           ),
         ),

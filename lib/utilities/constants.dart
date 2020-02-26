@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
 const kComplaintHeadingStyle = TextStyle(
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w800,
     fontSize: 15.0,
-    fontFamily: 'BebasNeue',
+    fontFamily: 'Merriweather',
     color: Colors.black);
 
-const ComplaintContentStyle=TextStyle(
-  fontWeight: FontWeight.w300,
-  fontSize: 15.0,
-  fontFamily: 'Raleway',
-);
