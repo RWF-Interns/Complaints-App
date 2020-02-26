@@ -13,8 +13,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var username = InputBox(
-    text: 'Boss ID',
-    hintText: 'Enter Boss ID',
+    text: 'User ID',
+    hintText: 'Enter User ID',
     icon: Icon(
       Icons.supervised_user_circle,
       size: 24.0,
@@ -22,8 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   );
 
   var password = InputBox(
-    text: 'Boss-Word',
-    hintText: 'Enter Boss Password',
+    text: 'Password',
+    hintText: 'Enter Password',
     icon: Icon(
       Icons.vpn_key,
       size: 24.0,
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Boss Word',
+            'Login Page',
             style: kInputBoxStyle,
           ),
           titleSpacing: 2.5,
@@ -70,6 +70,10 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () async {
                         setState(() {
                           showSpinner = true;
+                        });
+                        print(username.input + " " + password.input);
+                        setState(() {
+                          showSpinner = false;
                         });
                       },
                     ),
