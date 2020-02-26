@@ -1,7 +1,9 @@
-import 'package:LoginApp/custom_widgets/complaint_list.dart';
+import 'package:LoginApp/custom_widgets/my_complaint.dart';
 import 'package:flutter/material.dart';
 
 class ComplaintPage extends StatefulWidget {
+  static const routeName = 'ComplaintApp';
+
   @override
   _ComplaintPageState createState() => _ComplaintPageState();
 }

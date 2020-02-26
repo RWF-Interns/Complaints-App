@@ -1,3 +1,4 @@
+import 'package:LoginApp/screens/complaint_page.dart';
 import 'package:LoginApp/screens/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class ComplaintApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
         LoginPage.routeName: (context) => LoginPage(),
+        ComplaintPage.routeName: (context) => ComplaintPage(),
       },
     );
   }

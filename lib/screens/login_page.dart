@@ -1,5 +1,6 @@
 import 'package:LoginApp/custom_widgets/bottom_button.dart';
 import 'package:LoginApp/custom_widgets/input_box.dart';
+import 'package:LoginApp/screens/complaint_page.dart';
 import 'package:LoginApp/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -15,19 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   var username = InputBox(
     text: 'User ID',
     hintText: 'Enter User ID',
-    icon: Icon(
-      Icons.supervised_user_circle,
-      size: 24.0,
-    ),
   );
 
   var password = InputBox(
     text: 'Password',
     hintText: 'Enter Password',
-    icon: Icon(
-      Icons.vpn_key,
-      size: 24.0,
-    ),
     obscureText: true,
   );
 
@@ -68,13 +61,8 @@ class _LoginPageState extends State<LoginPage> {
                     BottomButton(
                       text: 'LOGIN',
                       onPressed: () async {
-                        setState(() {
-                          showSpinner = true;
-                        });
                         print(username.input + " " + password.input);
-                        setState(() {
-                          showSpinner = false;
-                        });
+                        Navigator.pushNamed(context, ComplaintPage.routeName);
                       },
                     ),
                   ],

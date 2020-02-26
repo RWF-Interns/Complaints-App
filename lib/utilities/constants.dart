@@ -8,7 +8,7 @@ const kComplaintHeadingStyle = TextStyle(
 
 const kScaffoldBackgroundColor = Color(0xFFE8F9F9);
 const kAppBarColor = Color(0xFF01022F);
-const kBottomButtonColor = Color(0xFFFF6977);
+const kBottomButtonColor = Color(0xCCF43A2F);
 const kTextFormFieldTextColor = Color(0xCC1C0F53);
 const kLabelTextColor = Color(0x701123CE);
 const kHintTextColor = Color(0x301123CE);
@@ -21,7 +21,7 @@ const kNormalText = TextStyle(
   letterSpacing: 2.0,
 );
 
-const kInputBoxColor = Color(0xCC141518);
+const kInputBoxColor = Colors.white;
 const kButtonColor = Color(0xFF141518);
 const kRedColor = Color(0xCCF43A2F);
 
@@ -36,5 +36,5 @@ const kInputBoxInputTextStyle = TextStyle(
   fontWeight: FontWeight.w200,
   letterSpacing: 2.5,
   fontFamily: 'Merriweather',
-  color: Color(0xFFE7E9EB),
+  color: Colors.black,
 );
