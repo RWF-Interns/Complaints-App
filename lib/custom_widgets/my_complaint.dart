@@ -20,80 +20,92 @@ class MyComplaint extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        margin: EdgeInsets.all(10.0),
-        padding: EdgeInsets.all(20.0),
+        margin: EdgeInsets.only(left: 15.0, right: 15.0, top: 12.0, bottom: 12.0),
+        padding: EdgeInsets.all(14.0),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFFBCBDBF),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 4.0,
+              blurRadius: 8.0,
+            ),
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              spreadRadius: 4.0,
+              blurRadius: 8.0,
+            ),
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              spreadRadius: 4.0,
+              blurRadius: 8.0,
+            ),
+          ],
+          color: Color(0xFFBCBDBF).withOpacity(0.05),
           borderRadius: BorderRadius.circular(8.0),
           border: Border.all(
-            color: Colors.black,
+            color: Colors.black.withOpacity(0.1),
             width: 1.0,
           ),
         ),
         child: Column(children: <Widget>[
-          Row(
+          Column(
             children: <Widget>[
               Text(
                 "Name and Address: ",
                 style: kComplaintHeadingStyle,
               ),
-              Expanded(
-                child: Text(
-                  nameAdd,
-                ),
+              Text(
+                nameAdd,
+                style: kComplaintTextStyle,
               ),
             ],
           ),
-          Row(
+          Column(
             children: <Widget>[
               Text(
                 "Complaint: ",
                 style: kComplaintHeadingStyle,
               ),
-              Expanded(
-                child: Text(
-                  comp,
-                ),
+              Text(
+                comp,
+                style: kComplaintTextStyle,
               ),
             ],
           ),
-          Row(
+          Column(
             children: <Widget>[
               Text(
                 "Department: ",
                 style: kComplaintHeadingStyle,
               ),
-              Expanded(
-                child: Text(
-                  dept,
-                ),
+              Text(
+                dept,
+                style: kComplaintTextStyle,
               ),
             ],
           ),
-          Row(
+          Column(
             children: <Widget>[
               Text(
                 "Remark: ",
                 style: kComplaintHeadingStyle,
               ),
-              Expanded(
-                child: Text(
-                  remark,
-                ),
+              Text(
+                remark,
+                style: kComplaintTextStyle,
               ),
             ],
           ),
-          Row(
+          Column(
             children: <Widget>[
               Text(
                 "Complaint Date: ",
                 style: kComplaintHeadingStyle,
               ),
-              Expanded(
-                child: Text(
-                  dateOfComp,
-                ),
+              Text(
+                dateOfComp,
+                style: kComplaintTextStyle,
               ),
             ],
           ),
@@ -120,7 +132,7 @@ void submitMessage(BuildContext context) {
             Column(
               children: <Widget>[
                 TextField(
-                  maxLines: 10,
+                  maxLines: 20,
                   scrollPadding: EdgeInsets.all(20.0),
                   decoration: InputDecoration(
                       labelText: "Enter Remarks(if any)",

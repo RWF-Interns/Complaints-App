@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 const kComplaintHeadingStyle = TextStyle(
-    fontWeight: FontWeight.w800,
-    fontSize: 15.0,
-    fontFamily: 'Merriweather',
-    color: Colors.black);
+  letterSpacing: 2.0,
+  fontSize: 12.0,
+  fontFamily: 'Merriweather',
+);
+
+const kComplaintTextStyle = TextStyle(
+  fontWeight: FontWeight.w800,
+  fontSize: 14.0,
+  letterSpacing: 1.4,
+  fontFamily: 'Merriweather',
+);
 
 const kScaffoldBackgroundColor = Color(0xFFE8F9F9);
 const kAppBarColor = Color(0xFF01022F);

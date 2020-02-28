@@ -103,7 +103,7 @@ Map tuples2 = {};
 class _ComplaintPageState extends State<ComplaintPage> {
   getData() async {
     colNames = [];
-    var url = 'http://3ee809db.ngrok.io';
+    var url = 'http://328860c7.ngrok.io';
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     var data = response.body;
@@ -131,7 +131,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
   @override
   void initState() {
     getData();
-    colHeaders = getColNames();
+    //colHeaders = getColNames();
     super.initState();
   }
 
@@ -167,25 +167,25 @@ class _ComplaintPageState extends State<ComplaintPage> {
   var originalTable;
   @override
   Widget build(BuildContext context) {
-    getColNames();
+    // getColNames();
     getTuples2();
-    originalTable = DataTable(
-      columns: colHeaders.length > 0
-          ? colHeaders
-          : List<DataColumn>.generate(
-              6, (i) => DataColumn(label: Text('Waiting'))),
-      rows: tuples ??
-          [
-            DataRow(cells: [
-              DataCell(Text('...')),
-              DataCell(Text('...')),
-              DataCell(Text('...')),
-              DataCell(Text('...')),
-              DataCell(Text('...')),
-              DataCell(Text('...')),
-            ]),
-          ],
-    );
+    // originalTable = DataTable(
+    //   columns: colHeaders.length > 0
+    //       ? colHeaders
+    //       : List<DataColumn>.generate(
+    //           6, (i) => DataColumn(label: Text('Waiting'))),
+    //   rows: tuples ??
+    //       [
+    //         DataRow(cells: [
+    //           DataCell(Text('...')),
+    //           DataCell(Text('...')),
+    //           DataCell(Text('...')),
+    //           DataCell(Text('...')),
+    //           DataCell(Text('...')),
+    //           DataCell(Text('...')),
+    //         ]),
+    //       ],
+    // );
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -194,13 +194,15 @@ class _ComplaintPageState extends State<ComplaintPage> {
         body: ListView.builder(
           itemCount: rows.length ?? 1,
           itemBuilder: (context, i) {
-            return tuples2[i][0]!=null?MyComplaint(
-              nameAdd: tuples2[i][4] ?? '',
-              comp: tuples2[i][0] ?? '',
-              dept: tuples2[i][2] ?? '',
-              remark: tuples2[i][3] ?? '',
-              dateOfComp: tuples2[i][1] ?? '',
-            ):Text('');
+            return tuples2[i][0] != null
+                ? MyComplaint(
+                    nameAdd: tuples2[i][4] ?? '',
+                    comp: tuples2[i][0] ?? '',
+                    dept: tuples2[i][2] ?? '',
+                    remark: tuples2[i][3] ?? '',
+                    dateOfComp: tuples2[i][1] ?? '',
+                  )
+                : Text('');
           },
         ),
         floatingActionButton: FloatingActionButton(
@@ -214,21 +216,22 @@ class _ComplaintPageState extends State<ComplaintPage> {
     );
   }
 
-  static List<DataColumn> getColNames() {
-    List<DataColumn> colChildren = [];
-    for (int i = 0; i < colNames.length; i++) {
-      colChildren.add(DataColumn(label: Text(colNames[i])));
-    }
-    print(colChildren.length);
-    noOfColumns = colChildren.length;
-    print(colChildren);
-    colHeaders = colChildren;
-    getTuples();
-    return colChildren;
-  }
+  // static List<DataColumn> getColNames() {
+  //   List<DataColumn> colChildren = [];
+  //   for (int i = 0; i < colNames.length; i++) {
+  //     colChildren.add(DataColumn(label: Text(colNames[i])));
+  //   }
+  //   print(colChildren.length);
+  //   noOfColumns = colChildren.length;
+  //   print(colChildren);
+  //   colHeaders = colChildren;
+  //   getTuples();
+  //   return colChildren;
+  // }
 
   static getTuples() {
     List<DataRow> temp = [];
+    print(rows.length);
     for (int i = 0; i < rows.length; i++) {
       temp.add(
         DataRow(
