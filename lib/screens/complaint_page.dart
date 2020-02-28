@@ -78,6 +78,7 @@
 
 import 'dart:convert';
 
+import 'package:LoginApp/custom_widgets/my_complaint.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -167,6 +168,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
   @override
   Widget build(BuildContext context) {
     getColNames();
+    getTuples2();
     originalTable = DataTable(
       columns: colHeaders.length > 0
           ? colHeaders
@@ -189,14 +191,17 @@ class _ComplaintPageState extends State<ComplaintPage> {
         appBar: AppBar(
           title: Text("Registered Complaints"),
         ),
-        body: ListView(
-          children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.all(8.0),
-              child: noOfColumns > 0 ? originalTable : dummyTable,
-            ),
-          ],
+        body: ListView.builder(
+          itemCount: rows.length ?? 1,
+          itemBuilder: (context, i) {
+            return tuples2[i][0]!=null?MyComplaint(
+              nameAdd: tuples2[i][4] ?? '',
+              comp: tuples2[i][0] ?? '',
+              dept: tuples2[i][2] ?? '',
+              remark: tuples2[i][3] ?? '',
+              dateOfComp: tuples2[i][1] ?? '',
+            ):Text('');
+          },
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {

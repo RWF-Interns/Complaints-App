@@ -38,8 +38,10 @@ class MyComplaint extends StatelessWidget {
                 "Name and Address: ",
                 style: kComplaintHeadingStyle,
               ),
-              Text(
-                nameAdd,
+              Expanded(
+                child: Text(
+                  nameAdd,
+                ),
               ),
             ],
           ),
@@ -49,8 +51,10 @@ class MyComplaint extends StatelessWidget {
                 "Complaint: ",
                 style: kComplaintHeadingStyle,
               ),
-              Text(
-                comp,
+              Expanded(
+                child: Text(
+                  comp,
+                ),
               ),
             ],
           ),
@@ -60,8 +64,10 @@ class MyComplaint extends StatelessWidget {
                 "Department: ",
                 style: kComplaintHeadingStyle,
               ),
-              Text(
-                dept,
+              Expanded(
+                child: Text(
+                  dept,
+                ),
               ),
             ],
           ),
@@ -71,8 +77,10 @@ class MyComplaint extends StatelessWidget {
                 "Remark: ",
                 style: kComplaintHeadingStyle,
               ),
-              Text(
-                remark,
+              Expanded(
+                child: Text(
+                  remark,
+                ),
               ),
             ],
           ),
@@ -82,8 +90,10 @@ class MyComplaint extends StatelessWidget {
                 "Complaint Date: ",
                 style: kComplaintHeadingStyle,
               ),
-              Text(
-                dateOfComp,
+              Expanded(
+                child: Text(
+                  dateOfComp,
+                ),
               ),
             ],
           ),
