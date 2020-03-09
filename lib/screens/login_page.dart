@@ -13,8 +13,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Map<String, String> credentials = {
-    'abc': 'abc',
+  Map<String, List> credentials = {
+    'abc1': ['abc1', '1'],
+    'abc2': ['abc2', '2'],
+    'abc3': ['abc3', '3'],
+    'xyz1': ['xyz1', '1'],
+    'xyz2': ['xyz2', '2'],
+    'xyz3': ['xyz3', '3'],
   };
 
   var username = InputBox(
@@ -69,7 +74,9 @@ class _LoginPageState extends State<LoginPage> {
                       text: 'LOGIN',
                       onPressed: () async {
                         print(username.input + " " + password.input);
-                        if (credentials[username.input] == password.input) {
+                        if (credentials
+                                .containsKey(username.input.toString()) &&
+                            credentials[username.input][0] == password.input) {
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -86,9 +93,18 @@ class _LoginPageState extends State<LoginPage> {
                                   Button(
                                     onPressed: () {
                                       Navigator.pop(context);
-                                      Navigator.pushNamed(
+                                      // Navigator.pushNamed(
+                                      //   context,
+                                      //   ComplaintPage.routeName,
+                                      // );
+                                      Navigator.push(
                                         context,
-                                        ComplaintPage.routeName,
+                                        MaterialPageRoute(
+                                          builder: (context) => ComplaintPage(
+                                            flaskRoute:
+                                                credentials[username.input][1],
+                                          ),
+                                        ),
                                       );
                                     },
                                     text: 'GO',

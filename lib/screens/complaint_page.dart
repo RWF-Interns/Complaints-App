@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ComplaintPage extends StatefulWidget {
-  ComplaintPage({Key key, this.title}) : super(key: key);
+  ComplaintPage({Key key, this.title, @required this.flaskRoute}) : super(key: key);
 
   static const routeName = 'ComplaintPage';
-
+  final flaskRoute;
   final String title;
 
   @override
@@ -26,7 +26,7 @@ Map tuples2 = {};
 class _ComplaintPageState extends State<ComplaintPage> {
   getData() async {
     colNames = [];
-    var url = 'http://61890761.ngrok.io';
+    var url = 'http://61890761.ngrok.io/${widget.flaskRoute}';
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     var data = response.body;
