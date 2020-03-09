@@ -13,6 +13,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Map<String, String> credentials = {
+    'abc': 'abc',
+  };
+
   var username = InputBox(
     hintText: 'Enter User ID',
     labelText: 'User ID',
@@ -65,10 +69,63 @@ class _LoginPageState extends State<LoginPage> {
                       text: 'LOGIN',
                       onPressed: () async {
                         print(username.input + " " + password.input);
-                        Navigator.pushNamed(
-                          context,
-                          ComplaintPage.routeName,
-                        );
+                        if (credentials[username.input] == password.input) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(
+                                  'Login Successful',
+                                  style: kHeadingText.copyWith(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                titleTextStyle: kSubHeadingText,
+                                titlePadding: EdgeInsets.all(6.0),
+                                actions: <Widget>[
+                                  Button(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.pushNamed(
+                                        context,
+                                        ComplaintPage.routeName,
+                                      );
+                                    },
+                                    text: 'GO',
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(
+                                  'Wrong UID/Password',
+                                  style: kHeadingText.copyWith(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                titleTextStyle: kSubHeadingText,
+                                titlePadding: EdgeInsets.all(6.0),
+                                actions: <Widget>[
+                                  Button(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.pushReplacementNamed(
+                                        context,
+                                        LoginPage.routeName,
+                                      );
+                                    },
+                                    text: 'RETRY',
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                     ),
                   ],
