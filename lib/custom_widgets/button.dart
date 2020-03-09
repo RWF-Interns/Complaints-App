@@ -9,12 +9,19 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        side: BorderSide.none,
+      ),
       onPressed: onPressed,
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(16.0),
         child: Text(
           text,
-          style: kText,
+          style: kSubHeadingText.copyWith(
+            fontWeight: FontWeight.w400,
+            letterSpacing: 2.5,
+          ),
         ),
       ),
       elevation: 3.0,

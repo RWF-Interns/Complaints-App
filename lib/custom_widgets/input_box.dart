@@ -5,8 +5,14 @@ class InputBox extends StatelessWidget {
   String input;
   final String labelText;
   final String hintText;
+  final bool obscureText;
+  final keyboardType;
 
-  InputBox({@required this.labelText, @required this.hintText});
+  InputBox(
+      {@required this.labelText,
+      @required this.hintText,
+      this.obscureText,
+      @required this.keyboardType});
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +36,9 @@ class InputBox extends StatelessWidget {
           hoverColor: kButtonColor,
         ),
         cursorColor: kButtonColor,
-        keyboardType: TextInputType.phone,
+        obscureText: obscureText ?? false,
+        keyboardType: keyboardType,
         textAlign: TextAlign.center,
-        maxLength: 10,
-        maxLengthEnforced: true,
         style: kHugeText.copyWith(color: Colors.blueAccent, letterSpacing: 6.0),
       ),
     );

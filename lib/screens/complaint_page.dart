@@ -79,6 +79,7 @@
 import 'dart:convert';
 
 import 'package:LoginApp/custom_widgets/my_complaint.dart';
+import 'package:LoginApp/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -103,7 +104,7 @@ Map tuples2 = {};
 class _ComplaintPageState extends State<ComplaintPage> {
   getData() async {
     colNames = [];
-    var url = 'http://328860c7.ngrok.io';
+    var url = 'http://61890761.ngrok.io';
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     var data = response.body;
@@ -189,7 +190,10 @@ class _ComplaintPageState extends State<ComplaintPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Registered Complaints"),
+          title: Text(
+            "Registered Complaints",
+            style: kAppBarText,
+          ),
         ),
         body: ListView.builder(
           itemCount: rows.length ?? 1,
