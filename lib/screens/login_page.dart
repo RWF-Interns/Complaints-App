@@ -1,4 +1,4 @@
-import 'package:LoginApp/custom_widgets/bottom_button.dart';
+import 'package:LoginApp/custom_widgets/button.dart';
 import 'package:LoginApp/custom_widgets/input_box.dart';
 import 'package:LoginApp/screens/complaint_page.dart';
 import 'package:LoginApp/utilities/constants.dart';
@@ -14,14 +14,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var username = InputBox(
-    text: 'User ID',
     hintText: 'Enter User ID',
+    labelText: 'User ID',
   );
 
   var password = InputBox(
-    text: 'Password',
     hintText: 'Enter Password',
-    obscureText: true,
+    labelText: 'Password',
   );
 
   bool showSpinner = false;
@@ -32,17 +31,12 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Login Page',
-            style: kInputBoxStyle,
+            'Report Emergency',
+            style: kAppBarText,
           ),
-          titleSpacing: 2.5,
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          backgroundColor: kRedColor,
         ),
         body: ModalProgressHUD(
           inAsyncCall: showSpinner,
-          color: kRedColor,
           child: Center(
             child: ListView(
               children: [
@@ -58,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                         password,
                       ],
                     ),
-                    BottomButton(
+                    Button(
                       text: 'LOGIN',
                       onPressed: () async {
                         print(username.input + " " + password.input);

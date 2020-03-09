@@ -57,7 +57,7 @@ class MyComplaint extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     nameAdd,
-                    style: kComplaintTextStyle.copyWith(fontSize: 22.0),
+                    style: kText.copyWith(fontSize: 22.0),
                   ),
                 ],
               ),
@@ -66,7 +66,7 @@ class MyComplaint extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     comp,
-                    style: kComplaintTextStyle.copyWith(fontSize: 22.0),
+                    style: kText.copyWith(fontSize: 22.0),
                   ),
                 ],
               ),
@@ -78,7 +78,7 @@ class MyComplaint extends StatelessWidget {
                   ),
                   Text(
                     dept,
-                    style: kComplaintTextStyle,
+                    style: kText,
                   ),
                 ],
               ),
@@ -90,7 +90,7 @@ class MyComplaint extends StatelessWidget {
                   ),
                   Text(
                     remark,
-                    style: kComplaintTextStyle,
+                    style: kText,
                   ),
                 ],
               ),
@@ -102,7 +102,7 @@ class MyComplaint extends StatelessWidget {
                   ),
                   Text(
                     dateOfComp,
-                    style: kComplaintTextStyle,
+                    style: kText,
                   ),
                 ],
               ),
