@@ -20,7 +20,8 @@ class MyComplaint extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        margin: EdgeInsets.only(left: 15.0, right: 15.0, top: 12.0, bottom: 12.0),
+        margin:
+            EdgeInsets.only(left: 15.0, right: 15.0, top: 12.0, bottom: 12.0),
         padding: EdgeInsets.all(14.0),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -48,68 +49,64 @@ class MyComplaint extends StatelessWidget {
             width: 1.0,
           ),
         ),
-        child: Column(children: <Widget>[
-          Column(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Name and Address: ",
-                style: kComplaintHeadingStyle,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    nameAdd,
+                    style: kComplaintTextStyle.copyWith(fontSize: 22.0),
+                  ),
+                ],
               ),
-              Text(
-                nameAdd,
-                style: kComplaintTextStyle,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    comp,
+                    style: kComplaintTextStyle.copyWith(fontSize: 22.0),
+                  ),
+                ],
               ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                "Complaint: ",
-                style: kComplaintHeadingStyle,
+              Row(
+                children: <Widget>[
+                  Text(
+                    "Department: ",
+                    style: kText,
+                  ),
+                  Text(
+                    dept,
+                    style: kComplaintTextStyle,
+                  ),
+                ],
               ),
-              Text(
-                comp,
-                style: kComplaintTextStyle,
+              Row(
+                children: <Widget>[
+                  Text(
+                    "Remark: ",
+                    style: kText,
+                  ),
+                  Text(
+                    remark,
+                    style: kComplaintTextStyle,
+                  ),
+                ],
               ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                "Department: ",
-                style: kComplaintHeadingStyle,
+              Row(
+                children: <Widget>[
+                  Text(
+                    "Complaint Date: ",
+                    style: kText,
+                  ),
+                  Text(
+                    dateOfComp,
+                    style: kComplaintTextStyle,
+                  ),
+                ],
               ),
-              Text(
-                dept,
-                style: kComplaintTextStyle,
-              ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                "Remark: ",
-                style: kComplaintHeadingStyle,
-              ),
-              Text(
-                remark,
-                style: kComplaintTextStyle,
-              ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                "Complaint Date: ",
-                style: kComplaintHeadingStyle,
-              ),
-              Text(
-                dateOfComp,
-                style: kComplaintTextStyle,
-              ),
-            ],
-          ),
-        ]),
+            ]),
       ),
       onTap: () {
         submitMessage(context);
@@ -126,7 +123,7 @@ void submitMessage(BuildContext context) {
         backgroundColor: Colors.white,
         title: Text("Respond to registered complaint "),
         contentPadding: EdgeInsets.all(30.0),
-        contentTextStyle: kComplaintHeadingStyle,
+        contentTextStyle: kText,
         content: ListView(
           children: [
             Column(
