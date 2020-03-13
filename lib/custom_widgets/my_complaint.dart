@@ -1,6 +1,7 @@
 import 'package:LoginApp/custom_widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:LoginApp/utilities/constants.dart';
+import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 
 class MyComplaint extends StatelessWidget {
   final nameAdd;
@@ -25,7 +26,17 @@ class MyComplaint extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: kButtonColor.withOpacity(0.3),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: MoreGradientColors.azureLane,
+              stops: [
+                0.3,
+                0.6,
+                0.9,
+              ],
+            ),
+            color: kButtonColor.withOpacity(0.7),
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(
               color: Colors.black.withOpacity(0.1),

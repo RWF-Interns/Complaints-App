@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:LoginApp/custom_widgets/my_complaint.dart';
 import 'package:LoginApp/utilities/constants.dart';
@@ -6,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ComplaintPage extends StatefulWidget {
-  ComplaintPage({Key key, this.title, @required this.flaskRoute}) : super(key: key);
+  ComplaintPage({Key key, this.title, @required this.flaskRoute})
+      : super(key: key);
 
   static const routeName = 'ComplaintPage';
   final flaskRoute;
@@ -26,7 +28,7 @@ Map tuples2 = {};
 class _ComplaintPageState extends State<ComplaintPage> {
   getData() async {
     colNames = [];
-    var url = 'http://61890761.ngrok.io/${widget.flaskRoute}';
+    var url = 'http://e0aa5d04.ngrok.io/${widget.flaskRoute}';
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     var data = response.body;
@@ -56,6 +58,46 @@ class _ComplaintPageState extends State<ComplaintPage> {
     getData();
     //colHeaders = getColNames();
     super.initState();
+  }
+
+  static Future<HttpRequest> postFormData(
+    String url,
+    Map<String, String> data, {
+    bool withCredentials,
+    String responseType,
+    Map<String, String> requestHeaders,
+    void onProgress(
+      ProgressEvent e,
+    ),
+  }) {
+    var parts = [];
+    data.forEach(
+      (key, value) {
+        parts.add(
+          '${Uri.encodeQueryComponent(key)}='
+          '${Uri.encodeQueryComponent(value)}',
+        );
+      },
+    );
+    var formData = parts.join('&');
+
+    if (requestHeaders == null) {
+      requestHeaders = <String, String>{};
+    }
+    requestHeaders.putIfAbsent(
+      'Content-Type',
+      () => 'application/x-www-form-urlencoded; charset=UTF-8',
+    );
+
+    return HttpRequest.request(
+      url,
+      method: 'POST',
+      withCredentials: withCredentials,
+      responseType: responseType,
+      requestHeaders: requestHeaders,
+      sendData: formData,
+      onProgress: onProgress,
+    );
   }
 
   var dummyTable = DataTable(
