@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:LoginApp/utilities/constants.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
 import 'package:dio/dio.dart';
+import 'package:LoginApp/screens/complaint_page.dart';
 //import 'dart:convert';
 //import 'package:http/http.dart' as http;
 
@@ -20,8 +21,6 @@ class MyComplaint extends StatelessWidget {
     @required this.remark,
     @required this.dateOfComp,
   }); // constructor
-
-  var url = 'http://68e89c84.ngrok.io';
 
   sendData(String remark) async {
     Response response = await Dio().get(

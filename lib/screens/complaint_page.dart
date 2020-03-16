@@ -23,9 +23,9 @@ int noOfColumns = 0;
 List<DataColumn> colHeaders = [];
 List<DataRow> tuples = [];
 Map tuples2 = {};
+var url = 'http://68e89c84.ngrok.io';
 
 class _ComplaintPageState extends State<ComplaintPage> {
-  var url = 'http://68e89c84.ngrok.io';
   getData() async {
     colNames = [];
     url = url + '/${widget.flaskRoute}';
