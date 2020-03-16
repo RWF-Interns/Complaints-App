@@ -2,6 +2,9 @@ import 'package:LoginApp/custom_widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:LoginApp/utilities/constants.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
+import 'package:dio/dio.dart';
+//import 'dart:convert';
+//import 'package:http/http.dart' as http;
 
 class MyComplaint extends StatelessWidget {
   final nameAdd;
@@ -17,6 +20,85 @@ class MyComplaint extends StatelessWidget {
     @required this.remark,
     @required this.dateOfComp,
   }); // constructor
+
+  var url = 'http://68e89c84.ngrok.io';
+
+  sendData(String remark) async {
+    Response response = await Dio().get(
+      url + "/4",
+      queryParameters: {
+        "name": "",
+        "complaint": "wendu",
+        "date_of_complaint": "",
+        "doorno": "",
+        "department": "",
+      },
+    );
+    print(response.data.toString());
+  }
+
+  void submitMessage(BuildContext context) {
+    var input = InputBox();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: kBackgroundColor,
+          titleTextStyle: kSubHeadingText.copyWith(color: Colors.black),
+          title: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 5,
+                child: Text(
+                  "Respond to Complaint",
+                  style: kSubHeadingText,
+                ),
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.close,
+                  color: Colors.redAccent,
+                  size: 32.0,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          contentPadding: EdgeInsets.all(12.0),
+          contentTextStyle: kText,
+          content: ListView(
+            children: [
+              Column(
+                children: <Widget>[
+                  input,
+                  SizedBox(height: 14.0),
+                  Button(
+                    onPressed: () {
+                      sendData(input.remark);
+                    },
+                    text: 'SUBMIT REMARK',
+                  ),
+                  SizedBox(height: 6.0),
+                  Button(
+                    onPressed: null,
+                    text: 'ATTEND COMPLAINT',
+                  ),
+                  SizedBox(height: 6.0),
+                  Button(
+                    onPressed: null,
+                    text: 'CLOSE COMPLAINT',
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,77 +207,30 @@ class MyComplaint extends StatelessWidget {
   }
 }
 
-void submitMessage(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        backgroundColor: kBackgroundColor,
-        titleTextStyle: kSubHeadingText.copyWith(color: Colors.black),
-        title: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 5,
-              child: Text(
-                "Respond to Complaint",
-                style: kSubHeadingText,
-              ),
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.close,
-                color: Colors.redAccent,
-                size: 32.0,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+class InputBox extends StatelessWidget {
+  var remark;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      onChanged: (val) {
+        remark = val;
+      },
+      maxLines: 12,
+      scrollPadding: EdgeInsets.all(20.0),
+      decoration: InputDecoration(
+        labelText: "Enter Remarks(if any)",
+        labelStyle: kText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          borderSide: BorderSide(
+            color: kButtonColor,
+            width: 4.0,
+            style: BorderStyle.solid,
+          ),
         ),
-        contentPadding: EdgeInsets.all(12.0),
-        contentTextStyle: kText,
-        content: ListView(
-          children: [
-            Column(
-              children: <Widget>[
-                TextField(
-                  maxLines: 12,
-                  scrollPadding: EdgeInsets.all(20.0),
-                  decoration: InputDecoration(
-                    labelText: "Enter Remarks(if any)",
-                    labelStyle: kText,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                      borderSide: BorderSide(
-                        color: kButtonColor,
-                        width: 4.0,
-                        style: BorderStyle.solid,
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.text,
-                ),
-                SizedBox(height: 14.0),
-                Button(
-                  onPressed: null,
-                  text: 'SUBMIT REMARK',
-                ),
-                SizedBox(height: 6.0),
-                Button(
-                  onPressed: null,
-                  text: 'ATTEND COMPLAINT',
-                ),
-                SizedBox(height: 6.0),
-                Button(
-                  onPressed: null,
-                  text: 'CLOSE COMPLAINT',
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    },
-  );
+      ),
+      keyboardType: TextInputType.text,
+    );
+  }
 }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:LoginApp/custom_widgets/my_complaint.dart';
 import 'package:LoginApp/utilities/constants.dart';
@@ -26,9 +25,10 @@ List<DataRow> tuples = [];
 Map tuples2 = {};
 
 class _ComplaintPageState extends State<ComplaintPage> {
+  var url = 'http://68e89c84.ngrok.io';
   getData() async {
     colNames = [];
-    var url = 'http://e0aa5d04.ngrok.io/${widget.flaskRoute}';
+    url = url + '/${widget.flaskRoute}';
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     var data = response.body;
@@ -58,46 +58,6 @@ class _ComplaintPageState extends State<ComplaintPage> {
     getData();
     //colHeaders = getColNames();
     super.initState();
-  }
-
-  static Future<HttpRequest> postFormData(
-    String url,
-    Map<String, String> data, {
-    bool withCredentials,
-    String responseType,
-    Map<String, String> requestHeaders,
-    void onProgress(
-      ProgressEvent e,
-    ),
-  }) {
-    var parts = [];
-    data.forEach(
-      (key, value) {
-        parts.add(
-          '${Uri.encodeQueryComponent(key)}='
-          '${Uri.encodeQueryComponent(value)}',
-        );
-      },
-    );
-    var formData = parts.join('&');
-
-    if (requestHeaders == null) {
-      requestHeaders = <String, String>{};
-    }
-    requestHeaders.putIfAbsent(
-      'Content-Type',
-      () => 'application/x-www-form-urlencoded; charset=UTF-8',
-    );
-
-    return HttpRequest.request(
-      url,
-      method: 'POST',
-      withCredentials: withCredentials,
-      responseType: responseType,
-      requestHeaders: requestHeaders,
-      sendData: formData,
-      onProgress: onProgress,
-    );
   }
 
   var dummyTable = DataTable(
@@ -134,23 +94,6 @@ class _ComplaintPageState extends State<ComplaintPage> {
   Widget build(BuildContext context) {
     // getColNames();
     getTuples2();
-    // originalTable = DataTable(
-    //   columns: colHeaders.length > 0
-    //       ? colHeaders
-    //       : List<DataColumn>.generate(
-    //           6, (i) => DataColumn(label: Text('Waiting'))),
-    //   rows: tuples ??
-    //       [
-    //         DataRow(cells: [
-    //           DataCell(Text('...')),
-    //           DataCell(Text('...')),
-    //           DataCell(Text('...')),
-    //           DataCell(Text('...')),
-    //           DataCell(Text('...')),
-    //           DataCell(Text('...')),
-    //         ]),
-    //       ],
-    // );
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -183,19 +126,6 @@ class _ComplaintPageState extends State<ComplaintPage> {
       ),
     );
   }
-
-  // static List<DataColumn> getColNames() {
-  //   List<DataColumn> colChildren = [];
-  //   for (int i = 0; i < colNames.length; i++) {
-  //     colChildren.add(DataColumn(label: Text(colNames[i])));
-  //   }
-  //   print(colChildren.length);
-  //   noOfColumns = colChildren.length;
-  //   print(colChildren);
-  //   colHeaders = colChildren;
-  //   getTuples();
-  //   return colChildren;
-  // }
 
   static getTuples() {
     List<DataRow> temp = [];
