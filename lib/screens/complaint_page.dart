@@ -28,8 +28,7 @@ var url = 'http://68e89c84.ngrok.io';
 class _ComplaintPageState extends State<ComplaintPage> {
   getData() async {
     colNames = [];
-    url = url + '/${widget.flaskRoute}';
-    var response = await http.get(url);
+    var response = await http.get(url + '/${widget.flaskRoute}');
     print('Response status: ${response.statusCode}');
     var data = response.body;
     //debugPrint(data);
@@ -107,11 +106,11 @@ class _ComplaintPageState extends State<ComplaintPage> {
           itemBuilder: (context, i) {
             return tuples2[i][0] != null
                 ? MyComplaint(
-                    nameAdd: tuples2[i][4] ?? '',
-                    comp: tuples2[i][0] ?? '',
-                    dept: tuples2[i][2] ?? '',
-                    remark: tuples2[i][3] ?? '',
-                    dateOfComp: tuples2[i][1] ?? '',
+                    name: tuples2[i][4] ?? '',
+                    complaint: tuples2[i][0] ?? '',
+                    department: tuples2[i][2] ?? '',
+                    doorNo: tuples2[i][3] ?? '',
+                    dateOfComplaint: tuples2[i][1] ?? '',
                   )
                 : Text('');
           },

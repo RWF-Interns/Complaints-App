@@ -8,29 +8,30 @@ import 'package:LoginApp/screens/complaint_page.dart';
 //import 'package:http/http.dart' as http;
 
 class MyComplaint extends StatelessWidget {
-  final nameAdd;
-  final comp;
-  final dept;
-  final remark;
-  final dateOfComp;
+  final name;
+  final complaint;
+  final department;
+  final doorNo;
+  final dateOfComplaint;
 
   MyComplaint({
-    @required this.nameAdd,
-    @required this.comp,
-    @required this.dept,
-    @required this.remark,
-    @required this.dateOfComp,
+    @required this.name,
+    @required this.complaint,
+    @required this.department,
+    @required this.doorNo,
+    @required this.dateOfComplaint,
   }); // constructor
 
   sendData(String remark) async {
     Response response = await Dio().get(
       url + "/4",
       queryParameters: {
-        "name": "",
-        "complaint": "wendu",
-        "date_of_complaint": "",
-        "doorno": "",
-        "department": "",
+        "name": name,
+        "complaint": complaint,
+        "date_of_complaint": dateOfComplaint,
+        "doorno": doorNo,
+        "department": department,
+        "remark": remark,
       },
     );
     print(response.data.toString());
@@ -77,17 +78,16 @@ class MyComplaint extends StatelessWidget {
                   Button(
                     onPressed: () {
                       sendData(input.remark);
+                      Navigator.pop(context);
                     },
                     text: 'SUBMIT REMARK',
                   ),
                   SizedBox(height: 6.0),
                   Button(
-                    onPressed: null,
-                    text: 'ATTEND COMPLAINT',
-                  ),
-                  SizedBox(height: 6.0),
-                  Button(
-                    onPressed: null,
+                    onPressed: () {
+                      sendData("");
+                      Navigator.pop(context);
+                    },
                     text: 'CLOSE COMPLAINT',
                   ),
                 ],
@@ -132,7 +132,7 @@ class MyComplaint extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      nameAdd,
+                      name,
                       style: kBigText,
                       textAlign: TextAlign.center,
                     ),
@@ -150,7 +150,7 @@ class MyComplaint extends StatelessWidget {
                       Icon(Icons.subdirectory_arrow_right),
                       Expanded(
                         child: Text(
-                          comp,
+                          complaint,
                           style: kText.copyWith(fontSize: 22.0),
                         ),
                       ),
@@ -166,7 +166,7 @@ class MyComplaint extends StatelessWidget {
                         style: kText,
                       ),
                       Text(
-                        dept,
+                        department,
                         style: kText,
                       ),
                     ],
@@ -178,7 +178,7 @@ class MyComplaint extends StatelessWidget {
                         style: kText,
                       ),
                       Text(
-                        remark,
+                        doorNo,
                         style: kText,
                       ),
                     ],
@@ -190,7 +190,7 @@ class MyComplaint extends StatelessWidget {
                         style: kText,
                       ),
                       Text(
-                        dateOfComp,
+                        dateOfComplaint,
                         style: kText,
                       ),
                     ],
