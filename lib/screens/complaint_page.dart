@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:LoginApp/custom_widgets/my_complaint.dart';
@@ -17,21 +18,28 @@ class ComplaintPage extends StatefulWidget {
   _ComplaintPageState createState() => _ComplaintPageState();
 }
 
+var url = 'https://478a689b5504.ngrok.io';
 List rows = [];
 List<String> colNames = [];
 int noOfColumns = 0;
 List<DataColumn> colHeaders = [];
 List<DataRow> tuples = [];
 Map tuples2 = {};
-var url = 'http://68e89c84.ngrok.io';
+StreamController<String> controller = StreamController.broadcast();
+Stream stream;
 
 class _ComplaintPageState extends State<ComplaintPage> {
   getData() async {
     colNames = [];
+    tuples2 = {};
+    tuples = [];
+    //noOfColumns = 0;
+    //colHeaders = [];
+    //rows = [];
     var response = await http.get(url + '/${widget.flaskRoute}');
     print('Response status: ${response.statusCode}');
     var data = response.body;
-    //debugPrint(data);
+    debugPrint(data);
 
     Map valueMap = json.decode(data);
     rows = valueMap['items'];
@@ -50,13 +58,32 @@ class _ComplaintPageState extends State<ComplaintPage> {
       colNames.add(temp);
     }
     print(colNames);
+    setState(() {
+      controller.add("triggered refresh");
+    });
   }
 
   @override
   void initState() {
+    stream = controller.stream;
+    stream.listen((event) {
+        print(event);
+    });
     getData();
     //colHeaders = getColNames();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    rows = [];
+    colNames = [];
+    noOfColumns = 0;
+    colHeaders = [];
+    tuples = [];
+    tuples2 = {};
+    super.dispose();
+    // controller.close();
   }
 
   var dummyTable = DataTable(
@@ -93,6 +120,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
   Widget build(BuildContext context) {
     // getColNames();
     getTuples2();
+    getTuples();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -117,6 +145,11 @@ class _ComplaintPageState extends State<ComplaintPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
+            setState(() {
+              getData();
+              getTuples();
+              getTuples2();
+            });
             setState(() {});
           },
           tooltip: 'Refresh',
@@ -142,6 +175,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
       );
     }
     tuples = temp;
+    controller.add("refresh");
   }
 
   static getTuples2() {
@@ -153,5 +187,7 @@ class _ComplaintPageState extends State<ComplaintPage> {
       );
     }
     tuples2 = temp;
+    print(tuples2.length);
+    controller.add("refresh");
   }
 }

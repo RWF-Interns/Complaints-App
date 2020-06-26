@@ -7,7 +7,7 @@ import 'package:LoginApp/screens/complaint_page.dart';
 //import 'dart:convert';
 //import 'package:http/http.dart' as http;
 
-class MyComplaint extends StatelessWidget {
+class MyComplaint extends StatefulWidget {
   final name;
   final complaint;
   final department;
@@ -20,21 +20,28 @@ class MyComplaint extends StatelessWidget {
     @required this.department,
     @required this.doorNo,
     @required this.dateOfComplaint,
-  }); // constructor
+  });
+  @override
+  _MyComplaintState createState() => _MyComplaintState();
+}
 
+class _MyComplaintState extends State<MyComplaint> {
   sendData(String remark) async {
     Response response = await Dio().get(
       url + "/4",
       queryParameters: {
-        "name": name,
-        "complaint": complaint,
-        "date_of_complaint": dateOfComplaint,
-        "doorno": doorNo,
-        "department": department,
+        "name": widget.name,
+        "complaint": widget.complaint,
+        "date_of_complaint": widget.dateOfComplaint,
+        "doorno": widget.doorNo,
+        "department": widget.department,
         "remark": remark,
       },
     );
     print(response.data.toString());
+    setState(() {
+      controller.add("delete trigger");
+    });
   }
 
   void submitMessage(BuildContext context) {
@@ -63,6 +70,10 @@ class MyComplaint extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
+                  Navigator.pushReplacementNamed(
+                    context,
+                    ComplaintPage.routeName,
+                  );
                 },
               ),
             ],
@@ -79,6 +90,9 @@ class MyComplaint extends StatelessWidget {
                     onPressed: () {
                       sendData(input.remark);
                       Navigator.pop(context);
+                      setState(() {
+                        controller.add("delete trigger");
+                      });
                     },
                     text: 'SUBMIT REMARK',
                   ),
@@ -87,6 +101,9 @@ class MyComplaint extends StatelessWidget {
                     onPressed: () {
                       sendData("");
                       Navigator.pop(context);
+                      setState(() {
+                        controller.add("delete trigger");
+                      });
                     },
                     text: 'CLOSE COMPLAINT',
                   ),
@@ -132,7 +149,7 @@ class MyComplaint extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      name,
+                      widget.name,
                       style: kBigText,
                       textAlign: TextAlign.center,
                     ),
@@ -150,7 +167,7 @@ class MyComplaint extends StatelessWidget {
                       Icon(Icons.subdirectory_arrow_right),
                       Expanded(
                         child: Text(
-                          complaint,
+                          widget.complaint,
                           style: kText.copyWith(fontSize: 22.0),
                         ),
                       ),
@@ -166,7 +183,7 @@ class MyComplaint extends StatelessWidget {
                         style: kText,
                       ),
                       Text(
-                        department,
+                        widget.department,
                         style: kText,
                       ),
                     ],
@@ -178,7 +195,7 @@ class MyComplaint extends StatelessWidget {
                         style: kText,
                       ),
                       Text(
-                        doorNo,
+                        widget.doorNo,
                         style: kText,
                       ),
                     ],
@@ -190,7 +207,7 @@ class MyComplaint extends StatelessWidget {
                         style: kText,
                       ),
                       Text(
-                        dateOfComplaint,
+                        widget.dateOfComplaint,
                         style: kText,
                       ),
                     ],
@@ -199,7 +216,9 @@ class MyComplaint extends StatelessWidget {
           ),
         ),
         onTap: () {
-          submitMessage(context);
+          setState(() {
+            submitMessage(context);
+          });
         },
       ),
     );
